@@ -3,13 +3,16 @@ import os
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 
+from .llm import ChatGLM6BApi
+
 UPLOAD_PATH = os.path.join(os.path.dirname(__file__), 'images')
 
 app = Flask(__name__, template_folder="static")
 
 @app.route('/')
 def hello_world():
-    return 'hello world'
+    # return 'hello world'
+    return ChatGLM6BApi.doChatGlm()
 
 @app.route('/upload/', methods=['GET', 'POST'])
 def upload():
